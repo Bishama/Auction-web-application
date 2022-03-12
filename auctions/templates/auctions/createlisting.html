@@ -1,0 +1,27 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+        {% if message %}
+            <div class="alert alert-danger">{{ message }}</div>
+        {% endif %}
+
+        <!-- Jumbotron -->
+        <div class="jumbotron ">
+            <h2 class="card-title h2">CREATE LISTING</h2>
+            <br>
+            <div class="text-left">
+                <form action ="{% url 'createListing' %}" method="POST" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <table>
+                            {{ form }}
+                        </table>
+                        <input class="btn btn-primary" type="submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+          
+{% endblock %}

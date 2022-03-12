@@ -1,0 +1,50 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <br>
+    {% if message %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endif %}
+    <!-- Jumbotron -->
+    <div class="jumbotron text-center">
+        <!-- Title -->
+        <h2 class="card-title h2">ACTIVE LISTINGS</h2>
+        <!-- Grid row -->
+        <div class="row d-flex justify-content-center">
+            <!-- Grid column -->
+            <div class="col-xl-7 pb-2">
+                {% if empty %}
+                    <h3>No Active Listings available</h3>
+                {% else %}
+                    {% for i in data %}
+                        <br>
+                        <!-- Card Regular -->
+                        <div class="card card-cascade" >
+                            <!-- Card image -->
+        
+                                <a href="{% url 'listing' i.id %}"><img src=" {{ i.imageUpload.url }} " alt="image" style="width: 300px; height: auto"></a> 
+                    
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-center">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong>{{i.title}}</strong></h4>
+                                <!-- Text -->
+                                <p class="">{{i.description}} <br> </p>
+                                <!-- Price -->
+                                <p class="font-weight-bold">{{i.startBid}}$ <br> </p>
+                                <!-- Button -->
+                                <a href="{% url 'listing' i.id %}" class="btn btn-primary">View Listing</a>
+                            </div>
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                                {{i.created_at}}
+                            </div>
+                        </div>
+                        <!-- Card Regular -->
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    <!-- Jumbotron -->
+{% endblock %}

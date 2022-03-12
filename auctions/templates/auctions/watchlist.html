@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+   
+<div class="jumbotron text-center">
+        <h2 class="card-title h2">WATCHLIST</h2>
+
+        {% if present %}
+            {% for i in watchlist %}
+                <!-- Grid row -->
+                <br> <br>
+                <div class="card text-left">
+                    <img src="{{ i.watchlist_product.imageUpload.url }}" alt="image" style="width: 300px; height: auto">
+                   <h5 class="card-header h5">{{i.watchlist_product.title }}</h5>
+                    <div class="card-body">
+                        <h5 class="card-title">Description : {{i.watchlist_product.description}}</h5>
+                        <p class="lead">Price : ${{i.watchlist_product.startBid}}</p>
+                        <a href="{% url 'listing' i.watchlist_product.id %}" type="submit" class="btn btn-primary">Go To Listing</a>
+                    </div>
+                </div> 
+            {% endfor %}
+        {% else %}
+            <div class="text-center">
+                <!-- Text -->
+                <br> <br> 
+                <p class="lead">No Listings Found</p> 
+            </div>
+        {% endif %}
+</div>
+
+    <!-- End Jumbotron -->
+
+{% endblock %}
